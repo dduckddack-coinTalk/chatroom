@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  S3_BUCKET_NAME: cafein-deploy
+  S3_BUCKET_NAME: cointalk-deploy
 
 jobs:
   build:
