@@ -28,9 +28,17 @@ jobs:
     
     - name: Build with Gradle
       run: ./gradlew clean build
+      
+    # 디렉토리 생성
+    - name: Make Directory
+      run: mkdir -p deploy
+        
+    # Jar 파일 복사
+    - name: Copy Jar
+      run: cp ./build/libs/*.jar ./deploy
 
     - name: Make zip file
-      run: zip -r ./$GITHUB_SHA.zip .
+      run: zip -r ./coinTalk.zip ./deploy
       shell: bash
 
     - name: Configure AWS credentials
@@ -41,4 +49,4 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: Upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+      run: aws s3 cp --region ap-northeast-2 ./coinTalk.zip s3://$S3_BUCKET_NAME/
