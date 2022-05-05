@@ -1,7 +1,7 @@
 package com.example.kointalkchatroom.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
@@ -9,13 +9,13 @@ import reactor.core.publisher.Mono;
 import static org.springframework.web.reactive.function.server.RequestPredicates.path;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-@Configuration
+@RestController
 public class RouterConfig {
 
     @Bean
-    public RouterFunction<ServerResponse> userRouter() {
+    public RouterFunction<ServerResponse> chattingRouter() {
         return route().nest(path("/chatting"), builder -> {
-            builder.GET("/test", (req) -> ServerResponse.ok().body(Mono.just("hello user!"), String.class));
+            builder.GET("/test", (req) -> ServerResponse.ok().body(Mono.just("hello chatting!"), String.class));
         }).build();
     }
 }
