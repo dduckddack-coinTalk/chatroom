@@ -21,7 +21,7 @@ public class WebSockConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/chatting/ws-stomp").setAllowedOrigins("https://cointalk.wachsenhaus.com", "http://3.90.102.135:8080", "http://localhost:8080")
+        registry.addEndpoint("/chatting/ws-stomp").setAllowedOrigins("https://cointalk.wachsenhaus.com", "http://3.90.102.135:8080", "http://localhost:8080","http://localhost:3000")
                 .withSockJS();
     }
 }
