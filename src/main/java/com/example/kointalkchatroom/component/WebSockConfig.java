@@ -15,13 +15,13 @@ public class WebSockConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/sub");
-        config.setApplicationDestinationPrefixes("/pub");
+        config.enableSimpleBroker("/chatting/sub");
+        config.setApplicationDestinationPrefixes("/chatting/pub");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws-stomp").setAllowedOrigins("http://localhost:8080")
+        registry.addEndpoint("/chatting/ws-stomp").setAllowedOrigins("https://cointalk.wachsenhaus.com", "http://3.90.102.135:8080", "http://localhost:8080")
                 .withSockJS();
     }
 }
