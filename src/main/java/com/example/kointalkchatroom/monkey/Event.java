@@ -27,7 +27,7 @@ public class Event {
 
     @JsonCreator
     public Event(@JsonProperty("type") Type type,
-                 @JsonProperty("payload") Payload payload) {
+                  @JsonProperty("payload") Payload payload) {
         this.type = type;
         this.payload = payload;
         this.id = ID_GENERATOR.addAndGet(1);

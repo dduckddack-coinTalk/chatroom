@@ -24,6 +24,7 @@ public class UserStats {
         this.eventPublisher = eventPublisher;
         events
                 .filter(type(CHAT_MESSAGE, USER_JOINED))
+                .log()
                 .subscribe(this::onChatMessage);
         events
                 .filter(type(USER_LEFT))

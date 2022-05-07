@@ -4,27 +4,28 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class Payload {
+
+    private int roomId;
 
     private User user;
 
     private Map<String, Object> properties = new HashMap<>();
 
-    public Payload(User user, Map<String, Object> properties){
-        this(user);
+    public Payload(int roomId, User user, Map<String, Object> properties){
+        this(roomId, user);
         this.properties = properties;
     }
     @JsonCreator
-    private Payload(@JsonProperty("user") User user) {
+    private Payload(@JsonProperty("roomId") int roomId, @JsonProperty("user") User user) {
+        this.roomId = roomId;
         this.user = user;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     @JsonAnySetter

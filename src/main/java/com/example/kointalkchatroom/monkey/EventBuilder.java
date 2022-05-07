@@ -22,9 +22,15 @@ public class EventBuilder {
 
     protected class PayloadBuilder {
 
+        private int roomId;
         private String alias;
         private String avatar;
         private Map<String, Object> properties = new HashMap<>();
+
+        public PayloadBuilder roomId(int roomId) {
+            this.roomId = roomId;
+            return this;
+        }
 
         public PayloadBuilder userAlias(String alias) {
             this.alias = alias;
@@ -54,7 +60,7 @@ public class EventBuilder {
 
 
         public Event build() {
-            return buildEvent(new Payload(new User(payloadBuilder.alias, payloadBuilder.avatar), properties));
+            return buildEvent(new Payload(payloadBuilder.roomId, new User(payloadBuilder.alias, payloadBuilder.avatar), properties));
         }
     }
 }
