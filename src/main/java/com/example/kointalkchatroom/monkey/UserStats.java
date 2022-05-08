@@ -29,7 +29,7 @@ public class UserStats {
         events
                 .filter(type(USER_LEFT))
                 .map(Event::getUser)
-                .map(User::getAlias)
+                .map(User::getUsername)
                 .subscribe(userStatsMap::remove);
 
         events
@@ -48,8 +48,8 @@ public class UserStats {
     }
 
     private void onChatMessage(Event event) {
-        String alias = event.getUser().getAlias();
-        Stats stats = userStatsMap.computeIfAbsent(alias, s -> new Stats(event.getUser()));
+        String username = event.getUser().getUsername();
+        Stats stats = userStatsMap.computeIfAbsent(username, s -> new Stats(event.getUser()));
         stats.onChatMessage(event);
     }
 

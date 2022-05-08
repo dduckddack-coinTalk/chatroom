@@ -32,8 +32,8 @@ public class EventBuilder {
             return this;
         }
 
-        public PayloadBuilder userAlias(String alias) {
-            this.username = alias;
+        public PayloadBuilder userUsername(String username) {
+            this.username = username;
             return this;
         }
 
@@ -43,7 +43,7 @@ public class EventBuilder {
         }
 
         public PayloadBuilder user(User user) {
-            this.username = user.getAlias();
+            this.username = user.getUsername();
             this.avatar = user.getAvatar();
             return this;
         }

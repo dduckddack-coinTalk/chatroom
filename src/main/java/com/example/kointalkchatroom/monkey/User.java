@@ -18,7 +18,7 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getAlias() {
+    public String getUsername() {
         return username;
     }
 
