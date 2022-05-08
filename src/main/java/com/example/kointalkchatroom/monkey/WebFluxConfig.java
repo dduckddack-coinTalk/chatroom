@@ -1,6 +1,7 @@
 package com.example.kointalkchatroom.monkey;
 
 import com.example.kointalkchatroom.monkey.ChatSocketHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
+@Slf4j
 @Configuration
 public class WebFluxConfig {
 
@@ -37,6 +39,7 @@ public class WebFluxConfig {
 
     @Bean
     public HandlerMapping webSocketMapping(UnicastProcessor<Event> eventPublisher, Flux<Event> events) {
+        log.info("master 서버 입니다.");
         Map<String, Object> map = new HashMap<>();
         map.put("/chatting/rs", new ChatSocketHandler(eventPublisher, events));
         SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
