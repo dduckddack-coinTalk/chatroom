@@ -22,18 +22,18 @@ public class EventBuilder {
 
     protected class PayloadBuilder {
 
-        private int roomId;
-        private String alias;
+        private String roomId;
+        private String username;
         private String avatar;
         private Map<String, Object> properties = new HashMap<>();
 
-        public PayloadBuilder roomId(int roomId) {
+        public PayloadBuilder roomId(String roomId) {
             this.roomId = roomId;
             return this;
         }
 
         public PayloadBuilder userAlias(String alias) {
-            this.alias = alias;
+            this.username = alias;
             return this;
         }
 
@@ -43,7 +43,7 @@ public class EventBuilder {
         }
 
         public PayloadBuilder user(User user) {
-            this.alias = user.getAlias();
+            this.username = user.getAlias();
             this.avatar = user.getAvatar();
             return this;
         }
@@ -60,7 +60,7 @@ public class EventBuilder {
 
 
         public Event build() {
-            return buildEvent(new Payload(payloadBuilder.roomId, new User(payloadBuilder.alias, payloadBuilder.avatar), properties));
+            return buildEvent(new Payload(payloadBuilder.roomId, new User(payloadBuilder.username, payloadBuilder.avatar), properties));
         }
     }
 }

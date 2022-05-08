@@ -12,18 +12,18 @@ import java.util.Map;
 @Getter
 public class Payload {
 
-    private int roomId;
+    private String roomId;
 
     private User user;
 
     private Map<String, Object> properties = new HashMap<>();
 
-    public Payload(int roomId, User user, Map<String, Object> properties){
+    public Payload(String roomId, User user, Map<String, Object> properties){
         this(roomId, user);
         this.properties = properties;
     }
     @JsonCreator
-    private Payload(@JsonProperty("roomId") int roomId, @JsonProperty("user") User user) {
+    private Payload(@JsonProperty("roomId") String roomId, @JsonProperty("user") User user) {
         this.roomId = roomId;
         this.user = user;
     }

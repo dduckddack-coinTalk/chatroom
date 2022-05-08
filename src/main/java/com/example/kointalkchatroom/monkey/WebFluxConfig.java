@@ -38,7 +38,7 @@ public class WebFluxConfig {
     @Bean
     public HandlerMapping webSocketMapping(UnicastProcessor<Event> eventPublisher, Flux<Event> events) {
         Map<String, Object> map = new HashMap<>();
-        map.put("/websocket/chat", new ChatSocketHandler(eventPublisher, events));
+        map.put("/chatting/rs", new ChatSocketHandler(eventPublisher, events));
         SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
         simpleUrlHandlerMapping.setUrlMap(map);
 

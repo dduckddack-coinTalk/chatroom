@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
 
-    private String alias;
+    private String username;
     private String avatar;
 
     public static User systemUser(){
@@ -13,13 +13,13 @@ public class User {
     }
 
     @JsonCreator
-    public User(@JsonProperty("alias") String alias, @JsonProperty("avatar") String avatar) {
-        this.alias = alias;
+    public User(@JsonProperty("username") String username, @JsonProperty("avatar") String avatar) {
+        this.username = username;
         this.avatar = avatar;
     }
 
     public String getAlias() {
-        return alias;
+        return username;
     }
 
     public String getAvatar() {
