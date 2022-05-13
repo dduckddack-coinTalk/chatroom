@@ -1,16 +1,11 @@
-package com.example.kointalkchatroom.monkey;
+package com.example.kointalkchatroom.config;
 
-import com.example.kointalkchatroom.monkey.ChatSocketHandler;
+import com.example.kointalkchatroom.Handler.ChatSocketHandler;
+import com.example.kointalkchatroom.domain.Event;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.reactive.HandlerMapping;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 import reactor.core.publisher.Flux;
@@ -18,8 +13,6 @@ import reactor.core.publisher.UnicastProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
 @Slf4j
 @Configuration
@@ -33,20 +26,18 @@ public class WebFluxConfig {
     @Bean
     public Flux<Event> events(UnicastProcessor<Event> eventPublisher) {
         return eventPublisher
-                .replay(25)
+                .replay(500)
                 .autoConnect();
     }
 
     @Bean
     public HandlerMapping webSocketMapping(UnicastProcessor<Event> eventPublisher, Flux<Event> events) {
-        log.info("master 서버 입니다.");
         Map<String, Object> map = new HashMap<>();
         map.put("/chatting/rs", new ChatSocketHandler(eventPublisher, events));
         SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
         simpleUrlHandlerMapping.setUrlMap(map);
 
-        //Without the order things break :-/
-        simpleUrlHandlerMapping.setOrder(10);
+        simpleUrlHandlerMapping.setOrder(0);
         return simpleUrlHandlerMapping;
     }
 
@@ -55,8 +46,5 @@ public class WebFluxConfig {
         return new WebSocketHandlerAdapter();
     }
 
-    @Bean
-    public UserStats userStats(Flux<Event> events, UnicastProcessor eventPublisher){
-        return new UserStats(events, eventPublisher);
-    }
+
 }

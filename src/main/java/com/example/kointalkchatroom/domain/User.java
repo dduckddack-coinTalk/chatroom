@@ -1,4 +1,4 @@
-package com.example.kointalkchatroom.monkey;
+package com.example.kointalkchatroom.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,10 +7,6 @@ public class User {
 
     private String username;
     private String avatar;
-
-    public static User systemUser(){
-        return new User("System", "https://robohash.org/system.png");
-    }
 
     @JsonCreator
     public User(@JsonProperty("username") String username, @JsonProperty("avatar") String avatar) {

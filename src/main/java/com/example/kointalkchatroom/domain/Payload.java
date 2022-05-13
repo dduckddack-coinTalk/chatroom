@@ -1,4 +1,4 @@
-package com.example.kointalkchatroom.monkey;
+package com.example.kointalkchatroom.domain;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

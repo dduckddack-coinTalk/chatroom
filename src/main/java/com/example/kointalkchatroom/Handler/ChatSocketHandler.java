@@ -1,5 +1,6 @@
-package com.example.kointalkchatroom.monkey;
+package com.example.kointalkchatroom.Handler;
 
+import com.example.kointalkchatroom.domain.Event;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,9 @@ import reactor.core.publisher.Mono;
 import reactor.core.publisher.UnicastProcessor;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Optional;
 
-import static com.example.kointalkchatroom.monkey.Event.Type.USER_LEFT;
+import static com.example.kointalkchatroom.domain.Event.Type.USER_LEFT;
 
 @Service
 public class ChatSocketHandler implements WebSocketHandler {

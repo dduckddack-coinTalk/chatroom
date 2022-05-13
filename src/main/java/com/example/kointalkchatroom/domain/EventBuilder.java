@@ -1,4 +1,4 @@
-package com.example.kointalkchatroom.monkey;
+package com.example.kointalkchatroom.domain;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class EventBuilder {
         return new Event(type, payload);
     }
 
-    protected class PayloadBuilder {
+    public class PayloadBuilder {
 
         private String roomId;
         private String username;
@@ -45,11 +45,6 @@ public class EventBuilder {
         public PayloadBuilder user(User user) {
             this.username = user.getUsername();
             this.avatar = user.getAvatar();
-            return this;
-        }
-
-        public PayloadBuilder systemUser() {
-            user(User.systemUser());
             return this;
         }
 
