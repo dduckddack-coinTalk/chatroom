@@ -1,6 +1,5 @@
 # CoinTalk - ChatRoom
 코인톡 백엔드 서버 채팅방 도메인
-코인방별로 채팅 하는 기능입니다.
 
 <br><br>
 ## 배경(Background)
