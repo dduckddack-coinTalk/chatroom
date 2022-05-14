@@ -1,5 +1,5 @@
 # CoinTalk - ChatRoom
-코인톡 백엔드 서버 채팅방 도메인
+Webflux를 이용한 채팅 서버
 
 <br><br>
 ## 배경(Background)
@@ -17,7 +17,7 @@
 <br><br>
 ## 계획 (Plan)
 
- - Webflux를 이용한 Secket 통신 구현
+ - Webflux를 이용한 Socket 통신 구현
  - 코인방 별로 분리
 
 <br><br>
