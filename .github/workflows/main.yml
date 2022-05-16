@@ -22,7 +22,15 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        
+
+
+    - name: Set properties setting
+      run: |
+        echo spring.kafka.bootstrap-servers=${{ secrets.KAFKA_SERVER }} >> ./src/main/resources/application-prod.properties
+        echo spring.kafka.consumer.group-id=${{ secrets.KAFKA_GROUP_ID }} >> ./src/main/resources/application-prod.properties
+
+
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     
