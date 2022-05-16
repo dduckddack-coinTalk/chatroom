@@ -1,4 +1,4 @@
-package com.example.kointalkchatroom.config;
+package com.example.kointalkchatroom.router;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +10,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @RestController
-public class RouterConfig {
+public class ChatRouter {
 
     @Bean
     public RouterFunction<ServerResponse> chattingRouter() {
