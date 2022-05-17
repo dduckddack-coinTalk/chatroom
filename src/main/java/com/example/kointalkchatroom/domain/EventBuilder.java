@@ -23,12 +23,19 @@ public class EventBuilder {
     public class PayloadBuilder {
 
         private String roomId;
+
+        private long userId;
         private String username;
         private String avatar;
         private Map<String, Object> properties = new HashMap<>();
 
         public PayloadBuilder roomId(String roomId) {
             this.roomId = roomId;
+            return this;
+        }
+
+        public PayloadBuilder userId(long userId) {
+            this.userId = userId;
             return this;
         }
 
@@ -43,6 +50,7 @@ public class EventBuilder {
         }
 
         public PayloadBuilder user(User user) {
+            this.userId = user.getUserId();
             this.username = user.getUsername();
             this.avatar = user.getAvatar();
             return this;
@@ -55,7 +63,7 @@ public class EventBuilder {
 
 
         public Event build() {
-            return buildEvent(new Payload(payloadBuilder.roomId, new User(payloadBuilder.username, payloadBuilder.avatar), properties));
+            return buildEvent(new Payload(payloadBuilder.roomId, new User(payloadBuilder.username, payloadBuilder.userId, payloadBuilder.avatar), properties));
         }
     }
 }
