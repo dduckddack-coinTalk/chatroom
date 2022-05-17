@@ -27,6 +27,11 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
         Map<String, Object> map = super.getErrorAttributes(request, options);
         Throwable throwable = getError(request);
 
+        Integer status = (Integer) map.get("status");
+        if(status != 404) {
+            String messages = getExceptionMessages(throwable);
+            producer.sendMessage(messages);
+        }
         if (throwable instanceof GlobalException) {
             GlobalException ex = (GlobalException) throwable;
             makeMessage(map, ex.getReason());
@@ -34,8 +39,7 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
             makeMessage(map, throwable.getMessage());
         }
 
-        String messages = getExceptionMessages(throwable);
-        producer.sendMessage(messages);
+
 
         return map;
     }
